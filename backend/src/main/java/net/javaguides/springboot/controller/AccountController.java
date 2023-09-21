@@ -54,14 +54,26 @@ public class AccountController {
 				.orElseThrow(() -> new ResourceNotFoundException("account not exist with id :" + id));
 		return ResponseEntity.ok(account);
 	}
-
+	@GetMapping("/accounts/{name}")
+	public ResponseEntity<Account> getaccountByName(@PathVariable String name)
+	{
+		Account account = accountRepository.findByName(name);
+		if(account != null)
+		{
+			return ResponseEntity.ok(account);
+		}
+		else
+		{
+			throw new ResourceNotFoundException("Account not found with name " + name);
+		}
+		
+	}
 	@PutMapping("/accounts/{id}")
 	public ResponseEntity<Account> updateaccount(@PathVariable Long id, @RequestBody Account accountDetails){
 		Account account = accountRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("account not exist with id :" + id));
 		
-		account.setFirstName(accountDetails.getFirstName());
-		account.setLastName(accountDetails.getLastName());
+		account.setName(accountDetails.getName());
 		account.setEmailId(accountDetails.getEmailId());
 		
 		Account updatedaccount = accountRepository.save(account);

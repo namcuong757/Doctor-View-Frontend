@@ -13,5 +13,6 @@ import net.javaguides.springboot.model.Appointment;
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	List<Account> findByType(String type);
 	List<Account> findByEmailIdAndPassword(String emailId, String password);
+	Account findByName(String name);
 	
 }

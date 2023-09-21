@@ -1,0 +1,125 @@
+
+.navbar {
+    z-index: 1000; /* Example value */
+    position: relative;
+    margin-bottom: 0;  /* Ensure no negative margin */
+}
+#title{
+    margin-left: 30px;
+    color: #800000;
+    font-weight: bold;
+}
+#bar a{
+    color: #800000;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#slogan {
+    position: relative; /* To ensure it's full screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Ensuring it stays behind content like your box */
+    overflow: hidden; /* To make sure no scrolling occurs if the image is bigger */
+}
+
+#box {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    
+    width: 800px;  /* Adjust this value to your preference */
+    /* If you want to set a specific height, use the height property, but usually the content dictates the height in boxes like login forms. */
+
+    background-color: #ffffff; 
+    padding: 15px;  /* Adjust padding as necessary */
+    border: 2px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#box button{
+    margin-top: 20px;
+    width: 70%;
+}
+/* Remove text-specific styles from #slogan #box as it's not relevant to the box itself */
+#slogan #box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+#image {
+    width: 100vw; /* 100% of viewport width */
+    height: 90vh; /* 100% of viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Optional: If you want the image to be responsive and not exceed the div's width */
+img {
+    /* To maintain aspect ratio but cover entire screen */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+body, html {
+    height: 100%; /* Ensure full height */
+}
+
+.footer-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100%; /* Full height */
+}
+
+footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+#time-slot #time-item{
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}  
+#time-slot #time-item:hover{
+    background-color: #dde48d;
+}
+#time-item.disabled {
+    color: rgb(125, 119, 119);
+    pointer-events: none;
+  }

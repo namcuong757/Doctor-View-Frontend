@@ -9,6 +9,10 @@ import { AccountInfoComponent } from './view/account-info/account-info.component
 import { LoginComponent } from './view/login/login.component';
 import { SigninComponent } from './view/signin/signin.component';
 import { MessageComponent } from './view/message/message.component';
+import { PersonViewComponent } from './view/person-view/person-view.component';
+import { CalendarComponent } from './view/calendar/calendar.component';
+import { AppointmentComponent } from './view/appointment/appointment.component';
+import { DoctorListComponent } from './view/doctor-list/doctor-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { MessageComponent } from './view/message/message.component';
 
     LoginComponent,
     SigninComponent,
-    MessageComponent
+    MessageComponent,
+    PersonViewComponent,
+    CalendarComponent,
+    AppointmentComponent,
+    DoctorListComponent
   ],
   imports: [
     BrowserModule,

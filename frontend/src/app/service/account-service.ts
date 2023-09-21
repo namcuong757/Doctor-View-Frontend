@@ -47,6 +47,12 @@ export class AccountService
     }
     return this.httpClient.put<Account>( '/update', JSON.stringify(info), {headers: httpHeaders });
   }
-
-
+  getDoctors():Observable<Account[]>
+  {
+    return this.httpClient.get<Account[]>(`${this.baseURL}` + 'doctors');
+  }
+  getAccountByName(name : string):Observable<Account>
+  {
+    return this.httpClient.get<Account>(`${this.baseURL}/${name}`);
+  }
 }
