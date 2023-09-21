@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  background-color: #AbD4F4;
+}
+
+.bgImg{
+  background:url(/assets/images/bg.png) no-repeat;
+  width:100%;
+  background-size:cover;
+  position: absolute;
+}
+
+.banquan
+{
+  position: fixed !important;
+  bottom: 0px;
+  width:100%;
+  background-size:cover;
+}

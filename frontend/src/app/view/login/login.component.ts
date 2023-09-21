@@ -1,0 +1,50 @@
+import { Component } from '@angular/core';
+import { DoctorService } from 'src/app/service/doctor-service';
+import {Account} from "../../model/account";
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent
+{
+
+  constructor(private doctorService:DoctorService)
+  {
+
+  }
+  login()
+  {
+    /*
+    let email   = (document.getElementById('email') as HTMLInputElement).value;
+    let password = (document.getElementById('password') as HTMLInputElement).value;
+    this.doctorService.login(email, password).subscribe(
+      data =>
+      {
+        setTimeout(function () { window.location.reload();}, 2500);
+        window.sessionStorage.setItem("healthCenterUser", JSON.stringify(data))
+      },
+      error =>
+      {
+        // error
+      });
+     */
+    let mockDoctor = new Account();
+    mockDoctor.name = "doctor 1"
+    mockDoctor.age = 50;
+    mockDoctor.id = 1;
+    mockDoctor.phone = "666-666-6666";
+    mockDoctor.password = "1234";
+    mockDoctor.birthday = "1989-06-04";
+    mockDoctor.gender = "male";
+    mockDoctor.type = "doctor";
+    mockDoctor.details = "";
+    mockDoctor.email = "doctor@gamil.com";
+    window.sessionStorage.setItem("healthCenterUser", JSON.stringify(mockDoctor));
+    window.location.href = "message/logInSuccessful";
+  }
+
+
+
+}

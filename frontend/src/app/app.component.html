@@ -1,0 +1,51 @@
+<title>{{title}}</title>
+<div class="header bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="doctor/todayAppointments"><img src="/assets/images/homeLogo.png" style="height:80px;width:180px"></a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">My Appointment</a>
+            <ul class="dropdown-menu text-center bg-body-tertiary">
+              <li><a class="dropdown-item" href="myAccount/appointments/today">Today's Appointment</a></li>
+              <li><a class="dropdown-item" href="myAccount/appointments">Search Appointment</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav" *ngIf="user.id == -1">
+          <li class="nav-item dropdown text-center" style = "min-width:160px">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">LogIn</a>
+            <ul class="dropdown-menu dropdown-menu-end text-center bg-body-tertiary">
+              <li><a class="dropdown-item" href="/logIn">Log in</a></li>
+              <li><a class="dropdown-item" href="/signIn">Sign In</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav" *ngIf="user.id != -1">
+          <li class="nav-item dropdown text-center" style = "min-width:160px">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">{{user.name}}</a>
+            <ul class="dropdown-menu dropdown-menu-end text-center bg-body-tertiary">
+              <li><a class="dropdown-item" href="myAccount/info">My Account</a></li>
+              <li><a class="dropdown-item" (click)="logOut()">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div style="min-height: 800px" class="bgImg">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="banquan container-fluid text-end text-secondary">
+  All Right Reserved @Copy Right 2023
+</div>
+
+
