@@ -25,7 +25,7 @@ export class MessageComponent implements OnInit
     {
       // @ts-ignore
       let doctor:Account = JSON.parse( window.sessionStorage.getItem('healthCenterUser') );
-      this.message = 'Welcome Back ' + doctor.name;
+      this.message = 'Welcome Back ' + doctor.firstName + " " + doctor.lastName;
       this.targetPage = "Doctor/Home";
     }
 

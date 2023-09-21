@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Account } from './model/account';
-import { DoctorService } from './service/doctor-service';
+import { AccountService } from './service/account-service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Doctor';
   user:Account = new Account();
 
-  constructor(private doctorService:DoctorService)
+  constructor(private doctorService:AccountService)
   {
     if(window.sessionStorage.getItem('healthCenterUser') != null)
     {

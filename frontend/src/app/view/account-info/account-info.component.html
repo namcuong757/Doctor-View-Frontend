@@ -57,7 +57,7 @@
                   <label class="col-form-label">User Name:</label>
                 </div>
                 <div class="col-sm-6">
-                  <label class="col-form-label"><h5>{{user.name}}</h5></label>
+                  <label class="col-form-label"><h5>{{user.firstName + ' ' + user.lastName}}</h5></label>
                 </div>
               </div>
               <div class="row pt-2 pb-2">
@@ -84,7 +84,7 @@
                   <label class="col-form-label">E-mail:</label>
                 </div>
                 <div class="col-sm-8">
-                  <label class="col-form-label"><h5>{{user.email}}</h5></label>
+                  <label class="col-form-label"><h5>{{user.emailId}}</h5></label>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@
                       <label class="col-form-label">Your Current Email:</label>
                     </div>
                     <div class="col-sm-6">
-                      <input type="email" class="form-control" name="oldEmail" id="oldEmail" value="{{user.email}}" readonly>
+                      <input type="email" class="form-control" name="oldEmail" id="oldEmail" value="{{user.emailId}}" readonly>
                     </div>
                   </div>
                   <div class="row pb-4">
@@ -215,7 +215,7 @@
         </div>
 
         <!-- Update Work Experience -->
-        <div *ngIf="type=='workExperience' && user.id != -1">
+        <div *ngIf="type=='workExperience' && user.id != -1" >
           <h3 class="card-title text-center pt-3">My Work Experience</h3>
           <hr class="text-secondary">
           <div class="col-sm-12 ms-2">
@@ -293,8 +293,6 @@
         </div>
 
         <!-- Show Appointment  -->
-
-
 
 
         <div *ngIf="type=='userList' && user.id != -1 && user.type == 'ADMIN'">

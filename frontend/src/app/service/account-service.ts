@@ -7,8 +7,11 @@ import { Account } from "../model/account";
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService
+export class AccountService
 {
+
+  private baseURL = "http://localhost:8080/api/v1/accounts/";
+
   constructor(private httpClient:HttpClient)
   { }
 
@@ -21,7 +24,7 @@ export class DoctorService
     const params = new HttpParams({
       fromObject: info
     });
-    return this.httpClient.post<Account>('url', params);
+    return this.httpClient.post<Account>(this.baseURL +'login', params);
   }
 
 

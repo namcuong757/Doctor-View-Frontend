@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DoctorService } from 'src/app/service/doctor-service';
+import { AccountService } from 'src/app/service/account-service';
 import {Account} from "../../model/account";
 
 @Component({
@@ -10,12 +10,26 @@ import {Account} from "../../model/account";
 export class LoginComponent
 {
 
-  constructor(private doctorService:DoctorService)
+  constructor(private accountService:AccountService)
   {
 
   }
   login()
   {
+    let email   = (document.getElementById('email') as HTMLInputElement).value;
+    let password = (document.getElementById('password') as HTMLInputElement).value;
+    this.accountService.login(email, password).subscribe(
+      data =>
+      {
+        console.log(data)
+        window.sessionStorage.setItem("healthCenterUser", JSON.stringify(data));
+        window.location.href = "message/logInSuccessful";
+      },
+      error =>
+      {
+        window.location.href = "message/logInFailed";
+      });
+
     /*
     let email   = (document.getElementById('email') as HTMLInputElement).value;
     let password = (document.getElementById('password') as HTMLInputElement).value;
@@ -30,6 +44,7 @@ export class LoginComponent
         // error
       });
      */
+    /*
     let mockDoctor = new Account();
     mockDoctor.name = "doctor 1"
     mockDoctor.age = 50;
@@ -42,7 +57,7 @@ export class LoginComponent
     mockDoctor.details = "";
     mockDoctor.email = "doctor@gamil.com";
     window.sessionStorage.setItem("healthCenterUser", JSON.stringify(mockDoctor));
-    window.location.href = "message/logInSuccessful";
+    window.location.href = "message/logInSuccessful";*/
   }
 
 
