@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Account} from "../../model/account";
+import { CalendarService } from 'src/app/service/calendar.service';
 
 @Component({
   selector: 'app-massage',
@@ -14,7 +15,7 @@ export class MessageComponent implements OnInit
   targetPage:string = 'Home';
 
   num:number = 5;
-  constructor(private router:ActivatedRoute)
+  constructor(private router:ActivatedRoute, private calendarService : CalendarService)
   {
 
   }
@@ -25,8 +26,9 @@ export class MessageComponent implements OnInit
     {
       // @ts-ignore
       let doctor:Account = JSON.parse( window.sessionStorage.getItem('healthCenterUser') );
-      this.message = 'Welcome Back ' + doctor.firstName + " " + doctor.lastName;
-      this.targetPage = "Doctor/Home";
+      this.message = 'Welcome Back ' + doctor.name;
+      this.targetPage = "person-view";
+      this.calendarService.setStatus('yes');
     }
 
     if(this.router.snapshot.params['message'] == 'logOutSuccessful')

@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/service/account-service';
 import {Account} from "../../model/account";
+import { CalendarService } from 'src/app/service/calendar.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent
+export class LoginComponent implements OnInit
 {
-
-  constructor(private accountService:AccountService)
+  constructor(private accountService:AccountService, private calendarService : CalendarService)
   {
 
+  }
+  ngOnInit(): void {
+    this.calendarService.setStatus('pending');
+    console.log(this.calendarService.getStatus());
   }
   login()
   {

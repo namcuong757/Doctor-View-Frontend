@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {observable, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import { Account } from "../model/account";
+import { CalendarService } from "./calendar.service";
 
 
 @Injectable({
@@ -12,11 +13,13 @@ export class AccountService
 
   private baseURL = "http://localhost:8080/api/v1/accounts/";
 
-  constructor(private httpClient:HttpClient)
+  constructor(private httpClient:HttpClient, private calendarService:CalendarService)
   { }
 
   login(email:string, password:string):Observable<Account>
   {
+    this.calendarService.setStatus('yes');
+    console.log(this.calendarService.getStatus());
     const info = {
       email: email,
       password: password
@@ -53,6 +56,6 @@ export class AccountService
   }
   getAccountByName(name : string):Observable<Account>
   {
-    return this.httpClient.get<Account>(`${this.baseURL}/${name}`);
+    return this.httpClient.get<Account>(`${this.baseURL}` + 'name/' +`${name}`);
   }
 }

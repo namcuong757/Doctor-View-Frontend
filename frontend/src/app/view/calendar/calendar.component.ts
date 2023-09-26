@@ -23,7 +23,8 @@ export class CalendarComponent implements OnInit {
   generateCalendar(): void {
     const date = new Date(this.currentYear, this.currentMonth + 1, 0);
     const numberOfDays = date.getDate();
-    
+    this.calendarService.setchoosenMonth(this.currentMonth);
+    this.calendarService.setchoosenYear(this.currentYear);
     this.daysInMonth = Array.from({ length: numberOfDays }, (_, i) => i + 1);
   }
   

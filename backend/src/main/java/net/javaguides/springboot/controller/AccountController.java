@@ -54,7 +54,7 @@ public class AccountController {
 				.orElseThrow(() -> new ResourceNotFoundException("account not exist with id :" + id));
 		return ResponseEntity.ok(account);
 	}
-	@GetMapping("/accounts/{name}")
+	@GetMapping("/accounts/name/{name}")
 	public ResponseEntity<Account> getaccountByName(@PathVariable String name)
 	{
 		Account account = accountRepository.findByName(name);
@@ -105,7 +105,9 @@ public class AccountController {
 		}
 		else
 		{
+			System.out.println("Got it");
 			return ResponseEntity.ok(accountList.get(0));
+			
 		}
 
 	}

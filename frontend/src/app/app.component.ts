@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Account } from './model/account';
 import { AccountService } from './service/account-service';
+import { CalendarService } from './service/calendar.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Doctor';
   user:Account = new Account();
 
-  constructor(private doctorService:AccountService)
+  constructor(private doctorService:AccountService, public calendarService:CalendarService)
   {
     if(window.sessionStorage.getItem('healthCenterUser') != null)
     {
@@ -23,6 +24,7 @@ export class AppComponent {
       this.user = new Account();
     }
   }
+  
 
 
   openLogIn()
@@ -37,6 +39,7 @@ export class AppComponent {
 
   logOut()
   {
+    this.calendarService.setStatus('no');
     window.sessionStorage.removeItem('healthCenterUser');
     window.location.href = "message/logOutSuccessful";
   }

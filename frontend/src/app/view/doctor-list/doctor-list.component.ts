@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/model/account';
 import { AccountService } from 'src/app/service/account-service';
+import { CalendarService } from 'src/app/service/calendar.service';
 
 @Component({
   selector: 'app-doctor-list',
@@ -9,8 +10,9 @@ import { AccountService } from 'src/app/service/account-service';
 })
 export class DoctorListComponent implements OnInit{
   doctors : Account[] = [];
-  constructor(private accountService : AccountService){}
+  constructor(private accountService : AccountService, private calendar : CalendarService){}
   ngOnInit(): void {
+    this.calendar.setStatus('yes');
     this.getDoctors();
   }
   private getDoctors()

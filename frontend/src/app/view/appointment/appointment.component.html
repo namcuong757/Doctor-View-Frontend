@@ -1,52 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="bar">
-    <!-- Navbar brand -->
-    <a class="navbar-brand" id="title" href="#">Medical Help</a>
 
-    <!-- Navbar toggler (for mobile views) -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="personView">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item dropdown">
-                <!-- Replaced the Bootstrap-based dropdown with the custom one -->
-                <div class="dropdown">
-                    <a class="nav-link" href="#">Services &darr;</a>
-                    <div class="dropdown-content">
-                        <a href="appointment">Book an appointment</a>
-                        <a href="doctor-list">View Doctor List</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-</nav>
 <!-- End of nav bar -->
 <div id="slogan">
     <div class="container" id="box">
 		<div class="row justify-content-center">
 			<h3>Step 1/3: Choose Location and Department</h3><hr>
             <h5>Location</h5>
-            <select id="selectedPlaceId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true">
+            <select id="selectedPlaceId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true" [(ngModel)]="appointment.location">
                 <option value="1">San Diego Hospital(Misson Rd)</option>
                 <option value="2">San Marcos Hospital(LosPosas Rd)</option>
                 <option value="3">Los Angeles Hospital(5th Ave)</option>
                 <option value="4">San Francisco Hospital(Sanata Rd)</option>
             </select>
             <h5>Department</h5>
-            <select id="selectedDepartmentId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true">
+            <select id="selectedDepartmentId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true" [(ngModel)]="selectedDepartmentId" (change)="onDepartmentChange()">
                 <option selected></option>
                 <option value="1">Emergency Department (ED)</option>
                 <option value="2">Pediatrics Department(Children and Infant)</option>
@@ -58,7 +24,8 @@
                 <option value="8">General Medicine Department</option>
             </select>
             <h5>Doctor</h5>
-            <select id="selectedDoctorId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true">
+            <select id="selectedDoctorId" class="form-control w-50" style="color: rgb(85, 85, 85);" tabindex="-1" aria-hidden="true" [(ngModel)]="selectedDoctorId" (change)="onDoctorChange()">
+                <option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor }}</option>
             </select>
             <h5>Available Date</h5>
             <app-calendar></app-calendar>
@@ -75,7 +42,12 @@
                 <span id="time-item" (click)="calendar.setChoosenTime(1500)">15:00</span>
                 <span id="time-item" (click)="calendar.setChoosenTime(1600)">16:00</span>
             </div>
-            <button type="button" class="btn btn-primary pt-05">Next</button>   
+            <h5 *ngIf="calendar.getChoosenTime() != 0">Note</h5>
+            <form>
+                <input type="text" [(ngModel)]="appointment.description" name="name">
+            </form>
+            
+            <button *ngIf="calendar.getChoosenTime() != 0" type="button" class="btn btn-primary pt-05" (click)="createAppoinment()">Next</button>   
 		</div>
         
 	</div>
@@ -85,44 +57,3 @@
 </div>
 
 <div class="footer-wrapper">
-    <!-- Footer -->
-<footer class="bg-light py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <!-- About Section -->
-            <div class="col-md-4">
-                <h5>About Medical Help</h5>
-                <p>Providing top-tier medical care and support for our community for over 20 years. Your health is our utmost priority.</p>
-            </div>
-
-            <!-- Quick Links Section -->
-            <div class="col-md-4">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-decoration-none">History</a></li>
-                    <li><a href="#" class="text-decoration-none">About</a></li>
-                    <li><a href="#" class="text-decoration-none">Customer Support</a></li>
-                    <li><a href="#" class="text-decoration-none">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Section -->
-            <div class="col-md-4">
-                <h5>Contact Us</h5>
-                <p>
-                    <strong>Address:</strong> 123 Medical St., Health City, 12345<br>
-                    <strong>Phone:</strong> (123) 456-7890<br>
-                    <strong>Email:</strong> support@medicalhelp.com
-                </p>
-            </div>
-        </div>
-
-        <!-- Copyright Section -->
-        <div class="row mt-4">
-            <div class="col-12 text-center">
-                <p class="mb-0">© 2023 Medical Help. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
-</div>

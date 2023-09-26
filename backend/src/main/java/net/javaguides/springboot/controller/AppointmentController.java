@@ -37,13 +37,13 @@ public class AppointmentController {
 		}
 		
 		
-		@PostMapping("/appintments")
+		@PostMapping("/appointments")
 		public Appointment createAppointment(@RequestBody Appointment appointment) {
 			return appointmentRepository.save(appointment);
 		}
 		
 		
-		@GetMapping("/appintments/{id}")
+		@GetMapping("/appointments/{id}")
 		public ResponseEntity<Appointment> getAppointmentById(@PathVariable Long id) {
 			Appointment appointment = appointmentRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("Appointment not exist with id :" + id));
@@ -52,7 +52,7 @@ public class AppointmentController {
 		
 		 
 		
-		@PutMapping("/appintments/{id}")
+		@PutMapping("/appointments/{id}")
 		public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointmentDetails){
 			Appointment appointment = appointmentRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("Appointment not exist with id :" + id));
@@ -71,7 +71,7 @@ public class AppointmentController {
 		}
 		
 		
-		@DeleteMapping("/appintments/{id}")
+		@DeleteMapping("/appointments/{id}")
 		public String deleteAppointment(@PathVariable Long id){
 			Appointment appointment = appointmentRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("Appointment not exist with id :" + id));

@@ -1,8 +1,7 @@
 export class Account
 {
   id:number = -1; // account ID
-  firstName: string = ''; // user name
-  lastName: string = ''; // user name
+  name :string = '';
   phone:string = '';// user phone number
   emailId:string = '';// user email id
   password:string = ''; // user password

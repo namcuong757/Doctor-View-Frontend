@@ -9,6 +9,6 @@ export class Appointment
   description:string = '';
   date:string = ''
   time:number = 0;
-
+  location:string = '';
   constructor(){}
 }

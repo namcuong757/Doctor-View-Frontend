@@ -29,8 +29,12 @@ public class Appointment {
 	private String date;
 	@Column(name = "appointment_time")
 	private int time;
+	@Column(name = "location")
+	private String location;
+	@Column(name = "description")
+	private String description;
 	public Appointment(int id, int doctor_id, String doctor_name, int person_id, String person_name, int fee,
-			String date,int time) {
+			String date, int time, String location, String description) {
 		super();
 		this.id = id;
 		this.doctor_id = doctor_id;
@@ -38,8 +42,10 @@ public class Appointment {
 		this.person_id = person_id;
 		this.person_name = person_name;
 		this.fee = fee;
-		this.date=date;
+		this.date = date;
 		this.time = time;
+		this.location = location;
+		this.description = description;
 	}
 	public Appointment() {
 		super();
@@ -93,7 +99,17 @@ public class Appointment {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
-	
-
 }
