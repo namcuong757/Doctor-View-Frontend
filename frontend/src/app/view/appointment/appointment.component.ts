@@ -70,7 +70,8 @@ export class AppointmentComponent {
     console.log(this.appointment);
     this.appointmentService.createAppointment(this.appointment).subscribe({
       next: (response) => {
-        console.log('Appointment created!', response);
+        alert("Succesfully Booked Appointment");
+        window.location.href = "person-view";
       },
       error: (err) => {
         console.error('Error creating appointment!', err);

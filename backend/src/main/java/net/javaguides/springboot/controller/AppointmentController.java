@@ -1,7 +1,7 @@
 package net.javaguides.springboot.controller;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,6 +36,20 @@ public class AppointmentController {
 			return appointmentRepository.findByDate(date);
 		}
 		
+		@GetMapping("/appointments/personal/{id}")
+		public List<Appointment> getAllAppointmentById(@PathVariable Long id)
+		{
+			List<Appointment> list = new ArrayList<Appointment>();
+			List<Appointment> allAppointments = getAllAppointment();
+			for(Appointment i : allAppointments)
+			{
+				if(i.getPerson_id() == id)
+				{
+					list.add(i);
+				}
+			}
+			return list;
+		}
 		
 		@PostMapping("/appointments")
 		public Appointment createAppointment(@RequestBody Appointment appointment) {

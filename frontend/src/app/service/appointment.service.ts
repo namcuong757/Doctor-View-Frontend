@@ -37,4 +37,8 @@ export class AppointmentService {
     console.log(this.baseURL + '/doctor/date/' + doctor_id + "/" + date);
     return this.httpClient.get<Appointment[]>(this.baseURL + 'doctor/date/' + doctor_id + "/" + date);
   }
+  getAllAppointmentByPersonId(person_id : number):Observable<Appointment []>
+  {
+    return this.httpClient.get<Appointment[]>(this.baseURL + '/personal/' + person_id);
+  }
 }

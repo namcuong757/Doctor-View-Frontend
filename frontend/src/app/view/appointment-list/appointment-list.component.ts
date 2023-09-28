@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from 'src/app/model/account';
 import { Appointment } from 'src/app/model/appointment';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { CalendarService } from 'src/app/service/calendar.service';
@@ -10,23 +11,25 @@ import { CalendarService } from 'src/app/service/calendar.service';
 })
 export class AppointmentListComponent implements OnInit{
   appointments : Appointment[] = [];
+  current_user : Account = new Account;
   constructor(private appointmentService : AppointmentService, private calendarService : CalendarService){}
 
   ngOnInit(): void {
+    this.current_user = this.calendarService.getCurrentUser();
       this.calendarService.setStatus("yes");
-      this.getAppointments();
+      this.getAppointmentsByPersonId(this.current_user.id);
   }
   deleteAppointment(id : number)
   {
     this.appointmentService.deleteAppointment(id).subscribe(
       data=>{
-        this.getAppointments();
+        this.getAppointmentsByPersonId(this.current_user.id);
       }
     )
   }
-  private getAppointments()
+  private getAppointmentsByPersonId(id:number)
   {
-    this.appointmentService.getAllAppointments().subscribe(
+    this.appointmentService.getAllAppointmentByPersonId(id).subscribe(
       data =>{
         this.appointments = data;
       }

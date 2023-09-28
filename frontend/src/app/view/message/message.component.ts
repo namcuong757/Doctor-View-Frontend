@@ -39,6 +39,7 @@ export class MessageComponent implements OnInit
     }
     else if(this.router.snapshot.params['message'] == 'logOutSuccessful')
     {
+      this.calendarService.setStatus('pending');
       this.message = 'You Are Already Log Out';
       this.targetPage = "LogIn";
     }

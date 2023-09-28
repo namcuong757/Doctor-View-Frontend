@@ -39,7 +39,7 @@ export class AppComponent{
 
   logOut()
   {
-    this.calendarService.setStatus('no');
+    this.calendarService.setStatus('pending');
     window.sessionStorage.removeItem('healthCenterUser');
     window.location.href = "message/logOutSuccessful";
   }
