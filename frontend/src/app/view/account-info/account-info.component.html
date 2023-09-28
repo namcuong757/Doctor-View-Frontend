@@ -18,26 +18,15 @@
                 <a class="col-form-label h3" href="myAccount/password">Reset Password</a>
               </div>
 
-              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type != 'PERSON' && user.type != 'ADMIN'">
+              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type == 'DOCTOR'">
+                <a class="col-form-label h3" href="myAccount/appointmentFee">My Appointment Fee</a>
+              </div>
+              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type == 'DOCTOR'">
                 <a class="col-form-label h3" href="myAccount/workExperience">Work Experience</a>
               </div>
               <div class="col-sm-12">
               </div>
-              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type != 'PERSON' && user.type != 'ADMIN'">
-                <a class="col-form-label h3" href="myAccount/appointments">Appointments</a>
-              </div>
 
-              <div class="col-sm-12">
-              </div>
-              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type == 'ADMIN'">
-                <a class="col-form-label h3 text-danger" href="admin/myAccount/userList">User List</a>
-              </div>
-              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type == 'ADMIN'">
-                <a class="col-form-label h3 text-danger" href="admin/myAccount/DoctorList">Doctor List</a>
-              </div>
-              <div class="col-sm-12 border-bottom" *ngIf="user.id != -1 && user.type == 'ADMIN'">
-                <a class="col-form-label h3 text-danger" href="admin/myAccount/appointments">Order List</a>
-              </div>
             </div>
           </div>
         </div>
@@ -85,6 +74,16 @@
                 </div>
                 <div class="col-sm-8">
                   <label class="col-form-label"><h5>{{user.emailId}}</h5></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="row pt-2 pb-2">
+                <div class="col-sm-4 text-end">
+                  <label class="col-form-label">Appointment Fee:</label>
+                </div>
+                <div class="col-sm-8">
+                  <label class="col-form-label"><h5>{{'$' + doctorAppointmentFee}}</h5></label>
                 </div>
               </div>
             </div>
@@ -214,8 +213,46 @@
           </div>
         </div>
 
+        <!-- Update Appointment Fee -->
+        <div *ngIf="type=='appointmentFee' && user.id != -1 && user.type == 'DOCTOR'">
+          <h3 class="card-title text-center pt-3">Update Your Appointment Fee</h3>
+          <hr class="text-secondary">
+          <div class="row g-3">
+            <form id="updateAppointmentFeeForm">
+              <input type="hidden" name="user_id" id="user_id" value="{{user.id}}">
+              <div class="row pt-4 pb-4">
+                <div class="col-sm-12">
+                  <div class="row pb-4">
+                    <div class="col-sm-4 text-end">
+                      <label class="col-form-label">Your Current Appointment Fee:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" value="{{'$' + doctorAppointmentFee}}" readonly>
+                    </div>
+                  </div>
+                  <div class="row pb-4">
+                    <div class="col-sm-4 text-end">
+                      <label class="col-form-label">New Appointment Fee:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" name="appointmentFee" id="appointmentFee" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="row pt-4">
+              <div class="col-sm-11 text-end">
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4" (click)="updateAppointmentFee()">update</button>
+              </div>
+              <div class="col-sm-12" id="errorMessage">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Update Work Experience -->
-        <div *ngIf="type=='workExperience' && user.id != -1" >
+        <div *ngIf="type=='workExperience' && user.id != -1 && user.type == 'DOCTOR'" >
           <h3 class="card-title text-center pt-3">My Work Experience</h3>
           <hr class="text-secondary">
           <div class="col-sm-12 ms-2">
@@ -292,39 +329,6 @@
           </div>
         </div>
 
-        <!-- Show Appointment  -->
-
-
-        <div *ngIf="type=='userList' && user.id != -1 && user.type == 'ADMIN'">
-          <h3 class="card-title text-center p-4">User List</h3>
-          <div class="row g-3">
-            <div class="card-body" style="min-height: 400px;">
-              <div class="table-responsive">
-                <table class="table table-sm table-hover table-success">
-                  <thead class="thead-dark">
-                  <tr>
-                    <th scope="col-sm-1"><h5>#</h5></th>
-                    <th scope="col-sm-3"><h5>UserName</h5></th>
-                    <th scope="col-sm-4"><h5>PhoneNumber</h5></th>
-                    <th scope="col-sm-4"><h5>E-mail</h5></th>
-                    <th scope="col-sm-4"><h5>Operation</h5></th>
-                  </tr>
-                  </thead>
-                  <!--
-                  <tbody *ngFor = "let user of userList">
-                  <tr>
-                    <td><h5>{{user.id}}</h5></td>
-                    <td><h5>{{user.first_name + ' ' + user.last_name }}</h5></td>
-                    <td><h5>{{user.phone}}</h5></td>
-                    <td><h5>{{user.email}}</h5></td>
-                    <td><h5><button class="btn btn-success" (click)="showUserDetail(user)">Detail</button></h5></td>
-                  </tr>
-                  </tbody>-->
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

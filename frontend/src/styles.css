@@ -64,3 +64,17 @@ img {
     max-width: 100%;
     height: auto;
 }
+.bgImg{
+    background:url(/assets/images/bg.png) no-repeat;
+    width:100%;
+    background-size:cover;
+    position: absolute;
+  }
+  
+.banquan
+  {
+    position: fixed !important;
+    bottom: 0px;
+    width:100%;
+    background-size:cover;
+  }

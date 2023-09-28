@@ -32,4 +32,9 @@ export class AppointmentService {
   {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+  getAppointmentsByDoctorIDAndDate(doctor_id:number,date:number):Observable<Appointment []>
+  {
+    console.log(this.baseURL + '/doctor/date/' + doctor_id + "/" + date);
+    return this.httpClient.get<Appointment[]>(this.baseURL + 'doctor/date/' + doctor_id + "/" + date);
+  }
 }

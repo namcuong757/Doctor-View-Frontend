@@ -25,16 +25,32 @@ export class MessageComponent implements OnInit
     if(this.router.snapshot.params['message'] == 'logInSuccessful')
     {
       // @ts-ignore
-      let doctor:Account = JSON.parse( window.sessionStorage.getItem('healthCenterUser') );
-      this.message = 'Welcome Back ' + doctor.name;
-      this.targetPage = "person-view";
+      let account:Account = JSON.parse( window.sessionStorage.getItem('healthCenterUser') );
       this.calendarService.setStatus('yes');
+      this.message = 'Welcome Back ' + account.name;
+      if(account.type === 'Doctor')
+      {
+        this.targetPage = "doctor/appointment/:date";
+      }
+      else if(account.type === 'User')
+      {
+        this.targetPage = "person-view";
+      }
     }
-
-    if(this.router.snapshot.params['message'] == 'logOutSuccessful')
+    else if(this.router.snapshot.params['message'] == 'logOutSuccessful')
     {
       this.message = 'You Are Already Log Out';
       this.targetPage = "LogIn";
+    }
+    else if(this.router.snapshot.params['message'] == 'updateSuccessful')
+    {
+      this.message = 'Your Account Info Has Already Update';
+      this.targetPage = document.referrer;
+    }
+    else
+    {
+      this.message = 'Error: ' + this.router.snapshot.params['message'];
+      this.targetPage = document.referrer;
     }
 
 

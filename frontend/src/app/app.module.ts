@@ -15,6 +15,9 @@ import { CalendarComponent } from './view/calendar/calendar.component';
 import { AppointmentComponent } from './view/appointment/appointment.component';
 import { DoctorListComponent } from './view/doctor-list/doctor-list.component';
 import { PersonViewComponent } from './view/person-view/person-view.component';
+import { AppointmentListComponent } from './view/appointment-list/appointment-list.component';
+import { DoctorDashboardComponent } from './view/doctor-dashboard/doctor-dashboard.component';
+import { SearchAppointmentComponent } from './view/search-appointment/search-appointment.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { PersonViewComponent } from './view/person-view/person-view.component';
     CalendarComponent,
     AppointmentComponent,
     DoctorListComponent,
-    PersonViewComponent
+    PersonViewComponent,
+    AppointmentListComponent,
+    DoctorDashboardComponent,
+    SearchAppointmentComponent  
   ],
   imports: [
     FormsModule,
